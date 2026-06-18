@@ -7,12 +7,12 @@ router.get('/', async (req, res) => {
   res.json(blogs)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const blog = await Blog.create({...req.body})
     return res.json(blog)
-  } catch(error) {
-    return res.status(400).json({error})
+  } catch(err) {
+    next(err)
   }
 })
 

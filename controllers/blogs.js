@@ -1,15 +1,26 @@
 const router = require('express').Router()
+const jwt = require('jsonwebtoken')
+const {SECRET} = require('../utils/config')
 
-const {Blog} = require('../models')
+const {Blog, User} = require('../models')
 
 router.get('/', async (req, res) => {
   const blogs = await Blog.findAll()
   res.json(blogs)
 })
 
-router.post('/', async (req, res, next) => {
+const tokenExtractor = (req, res, next) => {
+  const authorization = req.get('authorization')
+
+  req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+
+  next()
+}
+
+router.post('/', tokenExtractor, async (req, res, next) => {
   try {
-    const blog = await Blog.create({...req.body})
+    const user = await User.findByPk(req.decodedToken.id)
+    const blog = await Blog.create({...req.body, userId: user.id})
     return res.json(blog)
   } catch(err) {
     next(err)

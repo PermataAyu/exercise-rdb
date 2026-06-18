@@ -1,10 +1,11 @@
 POST http://localhost:3001/api/blogs/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJoYW5kbGVyQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3ODE3NzU0MzR9.oqrNPKlKY4pSJ3zb-LyUad5LrQvj-3CE6t2qYaZsqGk
 
 {
-    "author": "another anon",
+    "author": "Not not Anon",
     "url": "http://localhost/",
-    "title": "Blog through web"
+    "title": "Blog by user"
 }
 
 ###
@@ -37,4 +38,14 @@ Content-Type: application/json
 
 {
     "name": "Matti Luukk"
+}
+
+###
+
+POST http://localhost:3001/api/login/
+Content-Type: application/json
+
+{
+    "username": "rhandler@gmail.com",
+    "password": "secret"
 }

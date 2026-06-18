@@ -19,3 +19,22 @@ Content-Type: application/json
 {
     "likes": 3
 }
+
+###
+
+POST http://localhost:3001/api/users/
+Content-Type: application/json
+
+{
+    "name": "mluukkai",
+    "username": "secret" 
+}
+
+###
+
+PUT http://localhost:3001/api/users/secret/
+Content-Type: application/json
+
+{
+    "name": "Matti Luukk"
+}

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const {Blog} = require('../models/index')
+const {Blog} = require('../models')
 
 router.get('/', async (req, res) => {
   const blogs = await Blog.findAll()
@@ -23,7 +23,7 @@ router.put('/:id', async (req,res) => {
     await blog.save()
     res.json(blog)
   } else {
-    res.status(404).send()
+    res.status(404).end()
   }
 })
 

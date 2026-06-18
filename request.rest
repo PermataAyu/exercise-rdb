@@ -1,0 +1,14 @@
+POST http://localhost:3001/api/blogs/
+Content-Type: application/json
+
+{
+    "author": "another anon",
+    "url": "http://localhost/",
+    "title": "Blog through web"
+}
+
+###
+
+DELETE http://localhost:3001/api/blogs/3
+
+###

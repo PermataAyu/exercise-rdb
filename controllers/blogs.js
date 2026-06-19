@@ -12,15 +12,23 @@ router.get('/', async (req, res) => {
 const tokenExtractor = (req, res, next) => {
   const authorization = req.get('authorization')
 
-  req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+  console.log('test')
+
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+  } 
 
   next()
 }
 
 router.post('/', tokenExtractor, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.decodedToken.id)
-    const blog = await Blog.create({...req.body, userId: user.id})
+    const user = req.decodedToken 
+      ? await User.findByPk(req.decodedToken.id) 
+      : null
+    const blog = user 
+      ? await Blog.create({...req.body, userId: user.id}) 
+      : await Blog.create({...req.body})
     return res.json(blog)
   } catch(err) {
     next(err)
@@ -38,13 +46,20 @@ router.put('/:id', async (req,res) => {
   }
 })
 
-router.delete('/:id', async (req,res) => {
+router.delete('/:id', tokenExtractor, async (req,res) => {
   const blog = await Blog.findByPk(req.params.id)
+  const user = req.decodedToken 
+    ? await User.findByPk(req.decodedToken.id)
+    : null
   if (blog) {
-    await blog.destroy()
-    res.status(204).end()
+    if (user && blog.userId === user.id) {
+      await blog.destroy()
+      res.status(204).end()
+    } else {
+      res.status(401).json({error: 'Unauthorized'})
+    }
   } else {
-    res.status(404).send()
+    res.status(404).end()
   }
 })
 

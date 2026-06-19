@@ -50,3 +50,7 @@ Content-Type: application/json
     "username": "rhandler@gmail.com",
     "password": "secret"
 }
+
+###
+
+POST http://localhost:3001/api/reset/

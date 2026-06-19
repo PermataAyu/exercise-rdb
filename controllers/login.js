@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
 
   const user = await User.findOne({where: {username: body.username}})
 
-  const passwordCheck = body.password === 'secret'
+  const passwordCheck = body.password === user.password
 
   if (!user && passwordCheck) {
     return res.status(401).json({error: 'invalid username or password'})

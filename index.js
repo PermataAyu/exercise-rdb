@@ -16,6 +16,11 @@ app.use('/api/blogs', blogsRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/authors', authorRouter)
+if (process.env.TESTING === 'true') {
+  const testRouter = require('./controllers/tests')
+  app.use('/', testRouter)
+}
+
 
 app.use(errorHandler)
 

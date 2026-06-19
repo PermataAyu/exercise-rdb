@@ -5,7 +5,11 @@ const {SECRET} = require('../utils/config')
 const {Blog, User} = require('../models')
 
 router.get('/', async (req, res) => {
-  const blogs = await Blog.findAll()
+  const blogs = await Blog.findAll({
+    include: {
+      model: User
+    }
+  })
   res.json(blogs)
 })
 

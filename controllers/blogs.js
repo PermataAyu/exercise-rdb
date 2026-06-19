@@ -4,6 +4,7 @@ const {SECRET} = require('../utils/config')
 
 const {Blog, User} = require('../models')
 const { Op } = require('sequelize')
+const { sequelize } = require('../utils/db')
 
 router.get('/', async (req, res) => {
   const where = req.query.search 
@@ -26,7 +27,10 @@ router.get('/', async (req, res) => {
     include: {
       model: User
     },
-    where
+    where,
+    order: [
+      ['likes', 'DESC']
+    ]
   })
   res.json(blogs)
 })

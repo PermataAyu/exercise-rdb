@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "author": "Anon",
     "url": "http://localhost/",
-    "title": "check created timestamp",
+    "title": "Blog for reading list",
     "year": 2025
 }
 
@@ -29,8 +29,8 @@ POST http://localhost:3001/api/users/
 Content-Type: application/json
 
 {
-    "name": "twobert",
-    "username": "rhandler"
+    "name": "robert",
+    "username": "rhandler@gmail.com"
 }
 
 ###
@@ -55,3 +55,13 @@ Content-Type: application/json
 ###
 
 POST http://localhost:3001/api/reset/
+
+###
+
+POST http://localhost:3001/api/readinglists
+Content-Type: application/json
+
+{
+    "blogId": 3,
+    "userId": 3
+}

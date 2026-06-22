@@ -5,8 +5,10 @@ const errorHandler = (err, req, res, next) => {
     return res.status(400).json({error: ['years invalid']})
   } else if (err.message === 'Validation isEmail on username failed') {
     return res.status(400).json({error: ['username must be email']})
+  } else if (err.message === 'insert or update on table "readings" violates foreign key constraint "readings_user_id_fkey"') {
+    return res.status(400).json({error: ['user or blog not found']})
   } else {
-    console.log(err)
+    console.log(err.message)
     return res.status(400).json({error: ['unknown error']})
   }
 

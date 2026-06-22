@@ -69,7 +69,7 @@ module.exports = {
         type: DataTypes.DATE
       }
     })
-    await queryInterface.createTable('readings',{
+    await queryInterface.createTable('reading_lists',{
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -92,7 +92,7 @@ module.exports = {
     })
   },
   down: async ({context: queryInterface}) => {
-    await queryInterface.dropTable('readings')
+    await queryInterface.dropTable('reading_lists')
     await queryInterface.dropTable('blogs')
     await queryInterface.dropTable('users')
   }

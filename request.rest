@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "author": "Anon",
     "url": "http://localhost/",
-    "title": "Blog for reading list",
+    "title": "Blog for another reading list",
     "year": 2025
 }
 
@@ -29,8 +29,8 @@ POST http://localhost:3001/api/users/
 Content-Type: application/json
 
 {
-    "name": "robert",
-    "username": "rhandler@gmail.com"
+    "name": "twobert",
+    "username": "rhandler2@gmail.com"
 }
 
 ###
@@ -63,5 +63,5 @@ Content-Type: application/json
 
 {
     "blogId": 3,
-    "userId": 3
+    "userId": 1
 }

@@ -5,8 +5,12 @@ const Reading = require('./reading')
 User.hasMany(Blog)
 Blog.belongsTo(User)
 
-User.belongsToMany(Blog, {through: Reading, as: 'read_list'})
-Blog.belongsToMany(User, {through: Reading, as: 'users_wait'})
+User.belongsToMany(Blog, {through: Reading, as: 'readings'})
+Blog.belongsToMany(User, {through: Reading, as: 'reading_users'})
+User.hasMany(Reading)
+Blog.hasMany(Reading)
+Reading.belongsTo(User)
+Reading.belongsTo(Blog)
 
 /* User.sync({alter: true})
 Blog.sync({alter: true}) */

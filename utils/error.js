@@ -1,10 +1,12 @@
 const errorHandler = (err, req, res, next) => {
-  console.error(err.name)
   if (err.name === 'SequelizeUniqueConstraintError') {
     return res.status(400).json({error: ['email already used']})
-  } else if (err.name === 'SequelizeValidationError') {
-    return res.status(400).json({error: ['username must be a valid email address']})
+  } else if (err.message === 'Validation error: Validation max on year failed') {
+    return res.status(400).json({error: ['years invalid']})
+  } else if (err.message === 'Validation isEmail on username failed') {
+    return res.status(400).json({error: ['username must be email']})
   } else {
+    console.log(err)
     return res.status(400).json({error: ['unknown error']})
   }
 

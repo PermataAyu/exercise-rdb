@@ -1,11 +1,12 @@
 POST http://localhost:3001/api/blogs/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJoYW5kbGVyQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3ODE3NzU0MzR9.oqrNPKlKY4pSJ3zb-LyUad5LrQvj-3CE6t2qYaZsqGk
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJoYW5kbGVyQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3ODE3NzU0MzR9.oqrNPKlKY4pSJ3zb-LyUad5LrQvj-3CE6t2qYaZsqGk
 
 {
-    "author": "Unknownymous",
+    "author": "Anon",
     "url": "http://localhost/",
-    "title": "For Counting"
+    "title": "check created timestamp",
+    "year": 2025
 }
 
 ###
@@ -29,7 +30,7 @@ Content-Type: application/json
 
 {
     "name": "twobert",
-    "username": "rhandler@gmail.com" 
+    "username": "rhandler"
 }
 
 ###

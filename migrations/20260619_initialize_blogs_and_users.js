@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize')
+const {DataTypes, Sequelize} = require('sequelize')
 
 module.exports = {
   up: async({context: queryInterface}) => {
@@ -24,12 +24,10 @@ module.exports = {
         type: DataTypes.STRING
       },
       created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       },
       updated_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       }
     })
     await queryInterface.createTable('blogs', {
@@ -53,17 +51,22 @@ module.exports = {
         type: DataTypes.INTEGER,
         defaultValue: 0
       },
+      year: {
+        type: DataTypes.INTEGER,
+        validate: {
+          max: new Date().getFullYear(),
+          min: 1991
+        }
+      },
       user_id: {
         type: DataTypes.INTEGER,
         reference: {model: 'users', key: 'id'}
       },
       created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE 
       },
       updated_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
       }
     })
   },

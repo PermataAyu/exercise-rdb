@@ -8,7 +8,7 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.message === 'insert or update on table "readings" violates foreign key constraint "readings_user_id_fkey"') {
     return res.status(400).json({error: ['user or blog not found']})
   } else {
-    console.log(err.message)
+    console.log(err)
     return res.status(400).json({error: ['unknown error']})
   }
 

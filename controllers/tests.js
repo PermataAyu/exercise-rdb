@@ -1,4 +1,4 @@
-const { User, Blog } = require('../models')
+const { User, Blog, Reading, Session } = require('../models')
 
 const router = require('express').Router()
 
@@ -7,7 +7,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/api/reset', async (req, res) => {
-  await Blog.destroy({truncate: true})
+  await Session.destroy({truncate: true})
+  await Reading.destroy({truncate: true})
+  await Blog.destroy({truncate: true, cascade: true})
   await User.destroy({truncate: true, cascade: true})
   res.status(204).end()
 })

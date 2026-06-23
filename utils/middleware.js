@@ -1,11 +1,13 @@
-const jwt = require('jsonwebtoken')
+//const jwt = require('jsonwebtoken')
+const { Session } = require('../models')
 const {SECRET} = require('./config')
 
-const tokenExtractor = (req, res, next) => {
+const tokenExtractor = async (req, res, next) => {
   const authorization = req.get('authorization')
 
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-    req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
+    req.decodedToken = await Session.findOne({where: {token: authorization.substring(7)}})
+    //req.decodedToken = jwt.verify(authorization.substring(7), SECRET)
   } 
 
   next()

@@ -1,18 +1,18 @@
 POST http://localhost:3001/api/blogs/
 Content-Type: application/json
-#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJoYW5kbGVyQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3ODE3NzU0MzR9.oqrNPKlKY4pSJ3zb-LyUad5LrQvj-3CE6t2qYaZsqGk
+Authorization: Bearer 28badcc8d49ba9f5766e
 
 {
     "author": "Anon",
     "url": "http://localhost/",
-    "title": "Blog for another reading list",
+    "title": "Blog for server-side session",
     "year": 2025
 }
 
 ###
 
-DELETE http://localhost:3001/api/blogs/5
-#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJoYW5kbGVyQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3ODE3NzU0MzR9.oqrNPKlKY4pSJ3zb-LyUad5LrQvj-3CE6t2qYaZsqGk
+DELETE http://localhost:3001/api/blogs/1
+Authorization: Bearer 28badcc8d49ba9f5766e
 
 ###
 
@@ -29,8 +29,9 @@ POST http://localhost:3001/api/users/
 Content-Type: application/json
 
 {
-    "name": "twobert",
-    "username": "rhandler2@gmail.com"
+    "name": "robert",
+    "username": "rhandler@gmail.com",
+    "password": "secret"
 }
 
 ###
@@ -39,7 +40,7 @@ PUT http://localhost:3001/api/users/secret/
 Content-Type: application/json
 
 {
-    "name": "Matti Luukk"
+    "name": "rhandler2@gmail.com"
 }
 
 ###
@@ -75,3 +76,8 @@ Content-Type: application/json
 {
     "read": true
 }
+
+###
+
+DELETE http://localhost:3001/api/logout
+Authorization: Bearer 28badcc8d49ba9f5766e

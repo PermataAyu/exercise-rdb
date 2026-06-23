@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
 router.post('/', tokenExtractor, async (req, res, next) => {
   try {
     const user = req.decodedToken 
-      ? await User.findByPk(req.decodedToken.id) 
+      ? await User.findByPk(/* req.decodedToken.id */req.decodedToken.userId) 
       : null
     const blog = user 
       ? await Blog.create({...req.body, userId: user.id}) 
@@ -62,7 +62,7 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', tokenExtractor, async (req,res) => {
   const blog = await Blog.findByPk(req.params.id)
   const user = req.decodedToken 
-    ? await User.findByPk(req.decodedToken.id)
+    ? await User.findByPk(/* req.decodedToken.id */req.decodedToken.userId)
     : null
   if (blog) {
     if (user && blog.userId === user.id) {

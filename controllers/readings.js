@@ -16,7 +16,7 @@ router.post('/', async ( req, res, next ) => {
 
 router.put('/:id', tokenExtractor, async (req, res, next) => {
   try {
-    if (req.decodedToken && req.decodedToken.id === list.userId) {
+    if (req.decodedToken && /* req.decodedToken.id */ req.decodedToken.userId === list.userId) {
       const list = await Reading.findByPk(req.params.id)
       list.read = req.body.read
       list.save()

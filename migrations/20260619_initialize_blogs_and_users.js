@@ -23,6 +23,10 @@ module.exports = {
       password: {
         type: DataTypes.STRING
       },
+      disabled: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       created_at: {
         type: DataTypes.DATE
       },
@@ -90,8 +94,25 @@ module.exports = {
         references: {model: 'blogs', key: 'id'}
       }
     })
+    await queryInterface.createTable('_sessions_', {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
+      token: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {model: 'users', key: 'id'}
+      }
+    })
   },
   down: async ({context: queryInterface}) => {
+    await queryInterface.dropTable('_sessions_')
     await queryInterface.dropTable('reading_lists')
     await queryInterface.dropTable('blogs')
     await queryInterface.dropTable('users')
